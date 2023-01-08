@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const ToDo_Add = ({ props, setTodoData }) => {
-  console.log(props.length);
+const ToDo_Add = (props) => {
   console.log(props);
   const schema = yup.object().shape({
     todo: yup.string().required("Please enter your todo"),
@@ -22,12 +21,13 @@ const ToDo_Add = ({ props, setTodoData }) => {
 
   const sumbitToDoHandler = (data) => {
     const enteredNewToDo = {
-      id: props.length + 1,
+      id: data.id + 1,
       title: data.todo,
       completed: "false",
     };
-
-    setTodoData([...props, enteredNewToDo]);
+    /*  props.setTodoData([...props, enteredNewToDo]); */
+    console.log(enteredNewToDo);
+    props.onAddTodo(enteredNewToDo);
   };
 
   return (

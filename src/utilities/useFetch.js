@@ -8,18 +8,20 @@ export const useFetch = (url) => {
     const response = await fetch(url);
 
     const data = await response.json();
-
+    console.log(data);
     setIsLoading(false);
-    setTodoData(data.slice(0, 10));
+    setTodoData(data);
   }, [url]);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData, setTodoData]);
+  }, [fetchData]);
 
-  const handleDelete = (id) => {
-    setTodoData(todoData.filter((todo) => todo.id !== id));
-  };
+  console.log(todoData);
+  /*const dataArray = Object.entries(todoData);
+   const handleDelete = (id) => {
+    setTodoData(dataArray.filter((todo) => todo.id !== id));
+  }; */
 
-  return { isLoading, todoData, handleDelete, setTodoData };
+  return { isLoading, todoData, /* handleDelete, */ setTodoData };
 };
